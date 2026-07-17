@@ -141,8 +141,6 @@ desafio-devclub/
 ## 🔮 Melhorias Futuras
 
 - [ ] Tela de login para restringir o acesso à área administrativa
-- [ ] Filtro de agendamentos por data no painel admin
-- [ ] Paginação da tabela de agendamentos
 - [ ] Notificação por e-mail/WhatsApp ao cliente na confirmação do agendamento
 
 ---
