@@ -8,6 +8,7 @@ Projeto fullstack desenvolvido como solução para o **desafio técnico do DevCl
 ---
 
 ## 🚀 Funcionalidades
+⚠️ Nota: o backend está no plano gratuito do Render, que hiberna após 15 min de inatividade. A primeira requisição pode demorar até 50 segundos para carregar.
 
 ### 👤 Área do Cliente
 - **Formulário de agendamento:** coleta nome, telefone, serviço, data e horário.
