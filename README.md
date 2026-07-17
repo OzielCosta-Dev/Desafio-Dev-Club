@@ -3,7 +3,7 @@
 Projeto fullstack desenvolvido como solução para o **desafio técnico do DevClub**. A aplicação é um sistema de agendamento estilizado como "Barbearia DevClub", contendo uma área dedicada ao cliente para realizar marcações e um painel administrativo para gerenciar os agendamentos em tempo real.
 
 🔗 **Repositório:**  [Repositório no GitHub](https://github.com/OzielCosta-Dev/Desafio-Dev-Club)
-🔗 **Aplicação em produção:** [Aplicação em produção](https://barbearia-devclub.onrender.com)
+🔗 **Deploy:** [Aplicação em produção](https://barbearia-devclub.onrender.com)
 
 ---
 
