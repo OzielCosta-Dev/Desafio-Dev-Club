@@ -50,6 +50,7 @@ function App() {
   const [appointments, setAppointments] = useState([]);
   const [loadingAdmin, setLoadingAdmin] = useState(false);
   const [adminMessage, setAdminMessage] = useState({ type: '', text: '' });
+  const [filterDate, setFilterDate] = useState('');
 
   const services = [
     'Corte de Cabelo Masculino',
@@ -119,17 +120,19 @@ function App() {
 
   // 1º: Declare a função fetchAppointments primeiro!
   const fetchAppointments = useCallback(async () => {
-    setLoadingAdmin(true);
-    try {
-      const response = await axios.get(`${API_URL}/admin/appointments`);
-      setAppointments(response.data);
-    } catch (error) {
-      console.error('Erro ao buscar agendamentos:', error);
-      setAdminMessage({ type: 'error', text: 'Erro ao carregar lista de agendamentos.' });
-    } finally {
-      setLoadingAdmin(false);
-    }
-  }, []);
+  setLoadingAdmin(true);
+  try {
+    const response = await axios.get(`${API_URL}/admin/appointments`, {
+      params: filterDate ? { date: filterDate } : {}
+    });
+    setAppointments(response.data);
+  } catch (error) {
+    console.error('Erro ao buscar agendamentos:', error);
+    setAdminMessage({ type: 'error', text: 'Erro ao carregar lista de agendamentos.' });
+  } finally {
+    setLoadingAdmin(false);
+  }
+}, [filterDate]);
 
   // 2º: Chame o useEffect logo abaixo dela!
   useEffect(() => {
@@ -323,7 +326,7 @@ function App() {
         {/* --- ÁREA DO ADMINISTRADOR --- */}
         {activeTab === 'admin' && (
           <div className="bg-devclub-card border border-devclub-green/20 p-6 md:p-8 rounded-2xl shadow-neon-lg w-full">
-            <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+   <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
               <h1 className="text-xl font-bold text-white">
                 Painel do Administrador 📊
               </h1>
@@ -333,6 +336,25 @@ function App() {
               >
                 🔄 Atualizar Lista
               </button>
+            </div>
+
+            {/* Filtro por data */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6">
+              <label className="text-sm font-semibold text-gray-400">Filtrar por data:</label>
+              <input
+                type="date"
+                value={filterDate}
+                onChange={(e) => setFilterDate(e.target.value)}
+                className="bg-devclub-dark border border-gray-700 text-white p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-devclub-green focus:border-devclub-green transition [color-scheme:dark]"
+              />
+              {filterDate && (
+                <button
+                  onClick={() => setFilterDate('')}
+                  className="text-sm text-gray-400 hover:text-devclub-green underline transition"
+                >
+                  Limpar filtro
+                </button>
+              )}
             </div>
 
             {adminMessage.text && (
